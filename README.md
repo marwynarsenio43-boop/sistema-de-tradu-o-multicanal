@@ -112,6 +112,7 @@ Form-data:
 - `source_language` — código do idioma ou `auto`
 - `target_language` — código do idioma destino
 - `translate` — `true` ou `false`
+<<<<<<< HEAD
 
 ---
 
@@ -119,3 +120,5 @@ Form-data:
 
 Desenvolvido para o projecto de **Exploração de Dados** — ISCIM  
 Maputo, Moçambique · 2025
+=======
+>>>>>>> 5f13512b124ec26921a7a78165905c11ad72e348
