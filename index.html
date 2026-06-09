@@ -3,244 +3,123 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>TranslateX — Sistema de Tradução Multicanal</title>
+<title>TranslateX — Tradução Multicanal Gratuita</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
-:root {
-  --bg:       #0a0a0f;
-  --surface:  #12121a;
-  --card:     #1a1a27;
-  --border:   #2a2a40;
-  --accent:   #6c63ff;
-  --accent2:  #ff6b9d;
-  --accent3:  #00d4aa;
-  --text:     #e8e8f0;
-  --muted:    #6b6b8a;
-  --success:  #00d4aa;
-  --error:    #ff5c7c;
-  --r:        12px;
+:root{
+  --bg:#0a0a0f;--surface:#12121a;--card:#1a1a27;--border:#2a2a40;
+  --accent:#6c63ff;--accent2:#ff6b9d;--accent3:#00d4aa;
+  --text:#e8e8f0;--muted:#6b6b8a;--r:12px;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:'DM Sans',sans-serif;
-  min-height:100vh;
-  overflow-x:hidden;
-}
-
-/* ── Background mesh ── */
-body::before{
-  content:'';
-  position:fixed;inset:0;z-index:0;
-  background:
-    radial-gradient(ellipse 60% 40% at 10% 20%, rgba(108,99,255,.12) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 35% at 90% 80%, rgba(255,107,157,.08) 0%, transparent 55%),
-    radial-gradient(ellipse 40% 30% at 50% 50%, rgba(0,212,170,.05) 0%, transparent 50%);
-  pointer-events:none;
-}
-
-/* ── Layout ── */
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;z-index:0;
+  background:radial-gradient(ellipse 60% 40% at 10% 20%,rgba(108,99,255,.12) 0%,transparent 60%),
+             radial-gradient(ellipse 50% 35% at 90% 80%,rgba(255,107,157,.08) 0%,transparent 55%);
+  pointer-events:none;}
 .wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 24px;}
-
-/* ── Header ── */
-header{padding:32px 0 20px;display:flex;align-items:center;justify-content:space-between;}
+header{padding:28px 0 16px;display:flex;align-items:center;justify-content:space-between;}
 .logo{display:flex;align-items:center;gap:10px;}
 .logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;}
-.logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:-.02em;}
+.logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;}
 .logo-text span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.badge{background:rgba(108,99,255,.15);border:1px solid rgba(108,99,255,.3);color:var(--accent);font-size:.72rem;font-weight:500;padding:4px 10px;border-radius:20px;letter-spacing:.05em;}
-
-/* ── API Key bar ── */
-.api-bar{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:var(--r);
-  padding:16px 20px;
-  display:flex;align-items:center;gap:12px;
-  margin-bottom:32px;
-}
-.api-bar label{font-size:.8rem;color:var(--muted);white-space:nowrap;font-weight:500;}
-.api-bar input{
-  flex:1;background:var(--surface);border:1px solid var(--border);
-  color:var(--text);border-radius:8px;padding:9px 14px;font-size:.88rem;
-  font-family:'DM Sans',sans-serif;outline:none;transition:border .2s;
-}
-.api-bar input:focus{border-color:var(--accent);}
-.api-bar .key-hint{font-size:.76rem;color:var(--muted);}
-.api-bar .key-hint a{color:var(--accent);text-decoration:none;}
-#apiStatus{font-size:.78rem;padding:4px 10px;border-radius:6px;white-space:nowrap;}
-#apiStatus.ok {background:rgba(0,212,170,.15);color:var(--success);}
-#apiStatus.err{background:rgba(255,92,124,.15);color:var(--error);}
-
-/* ── Tabs ── */
+.badge{background:rgba(0,212,170,.12);border:1px solid rgba(0,212,170,.3);color:var(--accent3);font-size:.72rem;font-weight:600;padding:4px 12px;border-radius:20px;letter-spacing:.05em;}
 .tabs{display:flex;gap:4px;margin-bottom:24px;background:var(--card);padding:5px;border-radius:10px;border:1px solid var(--border);width:fit-content;}
-.tab{
-  padding:9px 24px;border-radius:7px;cursor:pointer;
-  font-family:'Syne',sans-serif;font-weight:600;font-size:.85rem;
-  color:var(--muted);transition:all .22s;border:none;background:none;
-  display:flex;align-items:center;gap:7px;
-}
+.tab{padding:9px 24px;border-radius:7px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:600;font-size:.85rem;color:var(--muted);transition:all .22s;border:none;background:none;display:flex;align-items:center;gap:7px;}
 .tab.active{background:var(--accent);color:#fff;box-shadow:0 2px 12px rgba(108,99,255,.4);}
 .tab:hover:not(.active){color:var(--text);}
-
-/* ── Panel ── */
 .panel{display:none;}
 .panel.active{display:block;animation:fadeIn .3s ease;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-
-/* ── Grid ── */
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
 @media(max-width:700px){.grid{grid-template-columns:1fr;}}
-
-/* ── Card ── */
 .card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:22px;}
-.card-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;margin-bottom:16px;display:flex;align-items:center;gap:8px;color:var(--text);}
-.card-title .dot{width:7px;height:7px;border-radius:50%;}
-.card-title .dot.purple{background:var(--accent);}
-.card-title .dot.pink  {background:var(--accent2);}
-.card-title .dot.teal  {background:var(--accent3);}
-
-/* ── Form elements ── */
+.card-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.dot{width:7px;height:7px;border-radius:50%;}
+.dot.purple{background:var(--accent);}.dot.pink{background:var(--accent2);}.dot.teal{background:var(--accent3);}
 label.lbl{display:block;font-size:.78rem;color:var(--muted);margin-bottom:6px;font-weight:500;}
-textarea,select,input[type=text]{
-  width:100%;background:var(--surface);border:1px solid var(--border);
-  color:var(--text);border-radius:8px;padding:10px 14px;
-  font-family:'DM Sans',sans-serif;font-size:.88rem;outline:none;
-  transition:border .2s;resize:vertical;
-}
-textarea{min-height:160px;line-height:1.6;}
-textarea:focus,select:focus,input[type=text]:focus{border-color:var(--accent);}
+textarea,select{width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:10px 14px;font-family:'DM Sans',sans-serif;font-size:.88rem;outline:none;transition:border .2s;resize:vertical;}
+textarea{min-height:150px;line-height:1.6;}
+textarea:focus,select:focus{border-color:var(--accent);}
 select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6b8a' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;}
-
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
 @media(max-width:500px){.row{grid-template-columns:1fr;}}
-
-/* ── Button ── */
-.btn{
-  width:100%;padding:12px 20px;border:none;border-radius:9px;cursor:pointer;
-  font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;
-  transition:all .22s;display:flex;align-items:center;justify-content:center;gap:8px;
-  margin-top:14px;
-}
+.btn{width:100%;padding:12px 20px;border:none;border-radius:9px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;transition:all .22s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;}
 .btn-primary{background:linear-gradient(135deg,var(--accent),#8b84ff);color:#fff;box-shadow:0 4px 15px rgba(108,99,255,.35);}
 .btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(108,99,255,.5);}
 .btn-primary:disabled{opacity:.5;cursor:not-allowed;transform:none;}
 .btn-audio{background:linear-gradient(135deg,var(--accent2),#ff9bc1);color:#fff;box-shadow:0 4px 15px rgba(255,107,157,.3);}
-.btn-audio:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(255,107,157,.45);}
+.btn-audio:hover{transform:translateY(-1px);}
 .btn-audio:disabled{opacity:.5;cursor:not-allowed;transform:none;}
-
-/* ── Char counter ── */
+.btn-stop{background:linear-gradient(135deg,#ff5c7c,#ff8c69);color:#fff;display:none;}
 .counter{font-size:.72rem;color:var(--muted);text-align:right;margin-top:4px;}
-
-/* ── Result box ── */
-.result-box{
-  min-height:160px;background:var(--surface);border:1px solid var(--border);
-  border-radius:8px;padding:14px;font-size:.88rem;line-height:1.65;
-  color:var(--text);white-space:pre-wrap;position:relative;
-}
+.result-box{min-height:150px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;font-size:.88rem;line-height:1.65;color:var(--text);white-space:pre-wrap;position:relative;}
 .result-box.empty{color:var(--muted);font-style:italic;}
-.copy-btn{
-  position:absolute;top:10px;right:10px;
-  background:rgba(108,99,255,.15);border:1px solid rgba(108,99,255,.25);
-  color:var(--accent);border-radius:6px;padding:4px 10px;
-  font-size:.72rem;cursor:pointer;transition:all .2s;display:none;
-}
+.copy-btn{position:absolute;top:10px;right:10px;background:rgba(108,99,255,.15);border:1px solid rgba(108,99,255,.25);color:var(--accent);border-radius:6px;padding:4px 10px;font-size:.72rem;cursor:pointer;transition:all .2s;}
 .copy-btn:hover{background:rgba(108,99,255,.3);}
 
-/* ── Audio upload zone ── */
-.drop-zone{
-  border:2px dashed var(--border);border-radius:10px;
-  padding:36px 20px;text-align:center;cursor:pointer;
-  transition:all .25s;position:relative;
-}
-.drop-zone:hover,.drop-zone.dragover{border-color:var(--accent2);background:rgba(255,107,157,.05);}
-.drop-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
-.drop-icon{font-size:2.4rem;margin-bottom:10px;display:block;}
-.drop-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;margin-bottom:4px;}
-.drop-sub{font-size:.78rem;color:var(--muted);}
-.file-chosen{font-size:.8rem;color:var(--accent2);margin-top:8px;font-weight:500;}
+/* Mic zone */
+.mic-zone{border:2px dashed var(--border);border-radius:10px;padding:30px 20px;text-align:center;transition:all .25s;margin-bottom:14px;}
+.mic-zone.listening{border-color:var(--accent2);background:rgba(255,107,157,.06);animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,107,157,.3)}50%{box-shadow:0 0 0 10px rgba(255,107,157,0)}}
+.mic-icon{font-size:2.6rem;display:block;margin-bottom:8px;}
+.mic-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;margin-bottom:4px;}
+.mic-sub{font-size:.78rem;color:var(--muted);}
+.interim-text{font-size:.82rem;color:var(--muted);font-style:italic;margin-top:8px;min-height:20px;}
 
-/* ── Transcription panel ── */
-.trans-block{
-  background:rgba(0,212,170,.06);border:1px solid rgba(0,212,170,.2);
-  border-radius:8px;padding:14px;font-size:.85rem;line-height:1.65;
-  color:var(--text);white-space:pre-wrap;margin-bottom:14px;
-  display:none;
-}
+/* Trans block */
+.trans-block{background:rgba(0,212,170,.06);border:1px solid rgba(0,212,170,.2);border-radius:8px;padding:14px;font-size:.85rem;line-height:1.65;color:var(--text);white-space:pre-wrap;margin-bottom:14px;display:none;}
 .trans-label{font-size:.72rem;color:var(--accent3);font-weight:600;letter-spacing:.06em;margin-bottom:6px;text-transform:uppercase;}
 
-/* ── Toast ── */
-#toast{
-  position:fixed;bottom:28px;right:28px;z-index:999;
-  background:var(--card);border:1px solid var(--border);
-  border-radius:10px;padding:13px 20px;font-size:.85rem;
-  display:flex;align-items:center;gap:10px;
-  transform:translateY(80px);opacity:0;transition:all .3s;max-width:340px;
-}
+/* Toast */
+#toast{position:fixed;bottom:28px;right:28px;z-index:999;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:13px 20px;font-size:.85rem;display:flex;align-items:center;gap:10px;transform:translateY(80px);opacity:0;transition:all .3s;max-width:340px;}
 #toast.show{transform:translateY(0);opacity:1;}
-#toast.ok  {border-color:var(--success);color:var(--success);}
-#toast.err {border-color:var(--error);color:var(--error);}
+#toast.ok{border-color:var(--accent3);color:var(--accent3);}
+#toast.err{border-color:#ff5c7c;color:#ff5c7c;}
 
-/* ── Spinner ── */
-.spinner{
-  width:18px;height:18px;border:2px solid rgba(255,255,255,.3);
-  border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0;
-}
+.spinner{width:18px;height:18px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0;}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* ── Stats bar ── */
-.stats{display:flex;gap:24px;padding:14px 0;border-top:1px solid var(--border);margin-top:20px;flex-wrap:wrap;}
+.info-bar{background:rgba(0,212,170,.08);border:1px solid rgba(0,212,170,.2);border-radius:8px;padding:10px 14px;font-size:.78rem;color:var(--accent3);margin-bottom:20px;display:flex;align-items:center;gap:8px;}
+
+.stats{display:flex;gap:20px;padding:12px 0;border-top:1px solid var(--border);margin-top:16px;flex-wrap:wrap;}
 .stat{font-size:.78rem;color:var(--muted);}
 .stat strong{color:var(--text);font-weight:600;}
-
-/* ── Footer ── */
-footer{padding:28px 0;text-align:center;color:var(--muted);font-size:.78rem;margin-top:40px;border-top:1px solid var(--border);}
+footer{padding:24px 0;text-align:center;color:var(--muted);font-size:.78rem;margin-top:36px;border-top:1px solid var(--border);}
 footer a{color:var(--accent);text-decoration:none;}
 </style>
 </head>
 <body>
-
 <div class="wrap">
 
-  <!-- Header -->
   <header>
     <div class="logo">
       <div class="logo-icon">🌐</div>
       <div class="logo-text">Translate<span>X</span></div>
     </div>
-    <span class="badge">Multicanal · OpenAI</span>
+    <span class="badge">✓ 100% Gratuito</span>
   </header>
 
-  <!-- API Key -->
-  <div class="api-bar">
-    <label>🔑 API Key</label>
-    <input type="password" id="apiKey" placeholder="sk-proj-..." autocomplete="off"/>
-    <span id="apiStatus"></span>
-    <span class="key-hint">Obtém a tua em <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com</a></span>
+  <div class="info-bar">
+    ✨ Sem API Key · Sem registo · Sem custos — usa MyMemory API + Web Speech API
   </div>
 
-  <!-- Tabs -->
   <div class="tabs">
     <button class="tab active" onclick="switchTab('text')">✏️ Texto</button>
-    <button class="tab" onclick="switchTab('audio')">🎙️ Áudio</button>
+    <button class="tab" onclick="switchTab('audio')">🎙️ Voz</button>
   </div>
 
-  <!-- ═══ TEXT PANEL ═══ -->
+  <!-- TEXT PANEL -->
   <div id="panel-text" class="panel active">
     <div class="grid">
-
-      <!-- Input -->
       <div class="card">
         <div class="card-title"><span class="dot purple"></span>Texto Original</div>
         <div class="row">
           <div>
             <label class="lbl">Idioma de origem</label>
-            <select id="txtSrcLang">
-              <option value="auto">🔍 Detectar automaticamente</option>
+            <select id="txtSrc">
+              <option value="autodetect">🔍 Detectar automaticamente</option>
               {% for name, code in languages.items() %}
               <option value="{{ code }}">{{ name }}</option>
               {% endfor %}
@@ -248,7 +127,7 @@ footer a{color:var(--accent);text-decoration:none;}
           </div>
           <div>
             <label class="lbl">Traduzir para</label>
-            <select id="txtDstLang">
+            <select id="txtDst">
               {% for name, code in languages.items() %}
               <option value="{{ code }}" {% if code=='en' %}selected{% endif %}>{{ name }}</option>
               {% endfor %}
@@ -256,52 +135,55 @@ footer a{color:var(--accent);text-decoration:none;}
           </div>
         </div>
         <label class="lbl">Escreve ou cola o texto</label>
-        <textarea id="txtInput" placeholder="Escreve aqui o texto que queres traduzir..." oninput="updateCounter()"></textarea>
+        <textarea id="txtInput" placeholder="Escreve aqui o texto para traduzir..." oninput="updateCounter()"></textarea>
         <div class="counter"><span id="charCount">0</span> caracteres</div>
-        <button class="btn btn-primary" id="btnTranslateText" onclick="translateText()">
-          🌐 Traduzir Texto
-        </button>
+        <button class="btn btn-primary" id="btnTxt" onclick="translateText()">🌐 Traduzir Texto</button>
       </div>
 
-      <!-- Output -->
       <div class="card">
         <div class="card-title"><span class="dot pink"></span>Tradução</div>
-        <div style="margin-bottom:14px;">
-          <label class="lbl">Resultado</label>
-          <div class="result-box empty" id="txtResult">A tradução aparecerá aqui...
-          <button class="copy-btn" id="copyTxt" onclick="copyText('txtResult')">📋 Copiar</button>
-          </div>
+        <label class="lbl">Resultado</label>
+        <div class="result-box empty" id="txtResult">
+          A tradução aparecerá aqui...
+          <button class="copy-btn" onclick="copyEl('txtResult')" style="display:none" id="cpTxt">📋 Copiar</button>
         </div>
-        <div class="stats" id="txtStats" style="display:none;">
-          <div class="stat">Modelo: <strong>GPT-4o mini</strong></div>
-          <div class="stat">Idioma: <strong id="txtLangStat">—</strong></div>
-          <div class="stat">Tempo: <strong id="txtTimeStat">—</strong></div>
+        <div class="stats" id="txtStats" style="display:none">
+          <div class="stat">Motor: <strong>MyMemory API</strong></div>
+          <div class="stat">Idioma: <strong id="txtLang">—</strong></div>
+          <div class="stat">Tempo: <strong id="txtTime">—</strong></div>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- ═══ AUDIO PANEL ═══ -->
+  <!-- AUDIO PANEL -->
   <div id="panel-audio" class="panel">
     <div class="grid">
-
-      <!-- Input -->
       <div class="card">
-        <div class="card-title"><span class="dot pink"></span>Ficheiro de Áudio</div>
+        <div class="card-title"><span class="dot pink"></span>Reconhecimento de Voz</div>
         <div class="row">
           <div>
-            <label class="lbl">Idioma do áudio</label>
-            <select id="audSrcLang">
-              <option value="auto">🔍 Detectar automaticamente</option>
-              {% for name, code in languages.items() %}
-              <option value="{{ code }}">{{ name }}</option>
-              {% endfor %}
+            <label class="lbl">Idioma que vais falar</label>
+            <select id="audSrc">
+              <option value="pt-PT">Português (PT)</option>
+              <option value="pt-BR">Português (BR)</option>
+              <option value="en-US">English (US)</option>
+              <option value="en-GB">English (UK)</option>
+              <option value="es-ES">Español</option>
+              <option value="fr-FR">Français</option>
+              <option value="de-DE">Deutsch</option>
+              <option value="it-IT">Italiano</option>
+              <option value="zh-CN">中文</option>
+              <option value="ja-JP">日本語</option>
+              <option value="ar-SA">العربية</option>
+              <option value="ru-RU">Русский</option>
+              <option value="sw-KE">Kiswahili</option>
+              <option value="af-ZA">Afrikaans</option>
             </select>
           </div>
           <div>
             <label class="lbl">Traduzir para</label>
-            <select id="audDstLang">
+            <select id="audDst">
               {% for name, code in languages.items() %}
               <option value="{{ code }}" {% if code=='en' %}selected{% endif %}>{{ name }}</option>
               {% endfor %}
@@ -309,223 +191,199 @@ footer a{color:var(--accent);text-decoration:none;}
           </div>
         </div>
 
-        <label class="lbl">Carregar áudio</label>
-        <div class="drop-zone" id="dropZone">
-          <input type="file" id="audioFile" accept=".mp3,.mp4,.mpeg,.mpga,.m4a,.wav,.webm,.ogg,.flac" onchange="fileChosen(this)"/>
-          <span class="drop-icon">🎵</span>
-          <div class="drop-title">Arrasta o ficheiro aqui</div>
-          <div class="drop-sub">MP3, WAV, OGG, FLAC, M4A, WEBM · máx. 25MB</div>
-          <div class="file-chosen" id="fileName"></div>
+        <div class="mic-zone" id="micZone">
+          <span class="mic-icon" id="micIcon">🎙️</span>
+          <div class="mic-title" id="micTitle">Clica para falar</div>
+          <div class="mic-sub" id="micSub">Usa o microfone para ditar o texto</div>
+          <div class="interim-text" id="interimText"></div>
         </div>
 
-        <label style="display:flex;align-items:center;gap:8px;margin-top:14px;cursor:pointer;font-size:.85rem;color:var(--muted);">
-          <input type="checkbox" id="doTranslate" checked style="accent-color:var(--accent);width:15px;height:15px;"/>
-          Traduzir após transcrição
-        </label>
-
-        <button class="btn btn-audio" id="btnTranslateAudio" onclick="translateAudio()">
-          🎙️ Transcrever &amp; Traduzir
-        </button>
+        <button class="btn btn-audio" id="btnMicStart" onclick="startListening()">🎙️ Iniciar Gravação</button>
+        <button class="btn btn-stop" id="btnMicStop" onclick="stopListening()">⏹️ Parar Gravação</button>
       </div>
 
-      <!-- Output -->
       <div class="card">
         <div class="card-title"><span class="dot teal"></span>Resultado</div>
 
-        <div id="transcriptionBlock" class="trans-block">
-          <div class="trans-label">📝 Transcrição</div>
-          <div id="transcriptionText"></div>
+        <div id="transBlock" class="trans-block">
+          <div class="trans-label">📝 Texto reconhecido</div>
+          <div id="transText"></div>
         </div>
 
         <label class="lbl">Tradução</label>
-        <div class="result-box empty" id="audResult">O resultado aparecerá aqui...
-          <button class="copy-btn" id="copyAud" onclick="copyText('audResult')">📋 Copiar</button>
+        <div class="result-box empty" id="audResult">
+          O resultado aparecerá aqui...
+          <button class="copy-btn" onclick="copyEl('audResult')" style="display:none" id="cpAud">📋 Copiar</button>
         </div>
-
-        <div class="stats" id="audStats" style="display:none;">
-          <div class="stat">STT: <strong>Whisper v2</strong></div>
-          <div class="stat">Tradução: <strong>GPT-4o mini</strong></div>
-          <div class="stat">Tempo: <strong id="audTimeStat">—</strong></div>
+        <div class="stats" id="audStats" style="display:none">
+          <div class="stat">STT: <strong>Web Speech API</strong></div>
+          <div class="stat">Tradução: <strong>MyMemory</strong></div>
+          <div class="stat">Custo: <strong>$0.00</strong></div>
         </div>
       </div>
-
     </div>
   </div>
 
   <footer>
-    TranslateX · Construído com Flask + OpenAI · 
-    <a href="https://github.com" target="_blank">GitHub</a> · 
-    Free tier friendly 🚀
+    TranslateX · Flask + MyMemory API + Web Speech API ·
+    <a href="https://github.com/marwynarsenio43-boop/sistema-de-tradu-o-multicanal" target="_blank">GitHub</a> · 100% Gratuito 🚀
   </footer>
-
 </div>
 
-<!-- Toast -->
 <div id="toast"></div>
 
 <script>
-// ── Tab switching ──
-function switchTab(name) {
-  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',['text','audio'][i]===name));
+// ── Tabs ──
+function switchTab(n){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',['text','audio'][i]===n));
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('panel-'+name).classList.add('active');
+  document.getElementById('panel-'+n).classList.add('active');
 }
 
-// ── Counter ──
 function updateCounter(){
-  document.getElementById('charCount').textContent = document.getElementById('txtInput').value.length;
+  document.getElementById('charCount').textContent=document.getElementById('txtInput').value.length;
 }
-
-// ── API Key validation hint ──
-const apiInput = document.getElementById('apiKey');
-const apiStatus = document.getElementById('apiStatus');
-apiInput.addEventListener('input', ()=>{
-  const v = apiInput.value.trim();
-  if(!v){apiStatus.textContent='';apiStatus.className='';return;}
-  if(v.startsWith('sk-')){apiStatus.textContent='✓ Formato válido';apiStatus.className='ok';}
-  else{apiStatus.textContent='⚠ Formato inválido';apiStatus.className='err';}
-});
 
 // ── Toast ──
-function toast(msg, type='ok', dur=3200){
+function toast(msg,type='ok',dur=3200){
   const t=document.getElementById('toast');
-  t.textContent = (type==='ok'?'✓ ':'✕ ')+msg;
+  t.textContent=(type==='ok'?'✓ ':'✕ ')+msg;
   t.className='show '+type;
   clearTimeout(t._t);
   t._t=setTimeout(()=>{t.className='';},dur);
 }
 
 // ── Copy ──
-function copyText(id){
+function copyEl(id){
   const el=document.getElementById(id);
-  navigator.clipboard.writeText(el.innerText.replace(/📋 Copiar/,'').trim())
-    .then(()=>toast('Texto copiado!'))
-    .catch(()=>toast('Erro ao copiar','err'));
+  const txt=el.innerText.replace(/📋 Copiar/g,'').trim();
+  navigator.clipboard.writeText(txt).then(()=>toast('Texto copiado!')).catch(()=>toast('Erro ao copiar','err'));
 }
-
-// ── File chosen ──
-function fileChosen(input){
-  const name = input.files[0]?.name || '';
-  document.getElementById('fileName').textContent = name ? '📎 '+name : '';
-}
-
-// Drag & drop highlight
-const dz = document.getElementById('dropZone');
-['dragenter','dragover'].forEach(e=>dz.addEventListener(e,ev=>{ev.preventDefault();dz.classList.add('dragover');}));
-['dragleave','drop'].forEach(e=>dz.addEventListener(e,ev=>{ev.preventDefault();dz.classList.remove('dragover');}));
-dz.addEventListener('drop',ev=>{
-  const f=ev.dataTransfer.files[0];
-  if(f){document.getElementById('audioFile').files=ev.dataTransfer.files;fileChosen(document.getElementById('audioFile'));}
-});
 
 // ── Translate Text ──
 async function translateText(){
-  const api=apiInput.value.trim();
-  if(!api){toast('Introduz a tua API Key primeiro','err');return;}
   const text=document.getElementById('txtInput').value.trim();
-  if(!text){toast('Escreve algum texto para traduzir','err');return;}
-
-  const btn=document.getElementById('btnTranslateText');
-  btn.disabled=true;
-  btn.innerHTML='<div class="spinner"></div> A traduzir...';
+  if(!text){toast('Escreve algum texto primeiro','err');return;}
+  const btn=document.getElementById('btnTxt');
+  btn.disabled=true;btn.innerHTML='<div class="spinner"></div> A traduzir...';
   const t0=Date.now();
-
   const resultEl=document.getElementById('txtResult');
-  resultEl.classList.remove('empty');
-  resultEl.textContent='A processar...';
-
+  resultEl.classList.remove('empty');resultEl.textContent='A traduzir...';
   try{
     const r=await fetch('/translate/text',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
+      method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        api_key:api,
-        text:text,
-        source_language:document.getElementById('txtSrcLang').value,
-        target_language:document.getElementById('txtDstLang').value,
+        text,
+        source_language:document.getElementById('txtSrc').value,
+        target_language:document.getElementById('txtDst').value
       })
     });
     const d=await r.json();
     if(!r.ok||d.error) throw new Error(d.error||'Erro desconhecido');
-
-    resultEl.innerHTML=d.translated+'<button class="copy-btn" id="copyTxt" onclick="copyText(\'txtResult\')" style="display:block">📋 Copiar</button>';
+    resultEl.innerHTML=d.translated+'<button class="copy-btn" onclick="copyEl(\'txtResult\')" id="cpTxt">📋 Copiar</button>';
     const elapsed=((Date.now()-t0)/1000).toFixed(1)+'s';
-    const langName=[...document.getElementById('txtDstLang').options].find(o=>o.value===d.target_language)?.text||d.target_language;
-    document.getElementById('txtLangStat').textContent=langName;
-    document.getElementById('txtTimeStat').textContent=elapsed;
+    const sel=document.getElementById('txtDst');
+    document.getElementById('txtLang').textContent=sel.options[sel.selectedIndex].text;
+    document.getElementById('txtTime').textContent=elapsed;
     document.getElementById('txtStats').style.display='flex';
     toast('Tradução concluída em '+elapsed);
   }catch(e){
-    resultEl.textContent='Erro: '+e.message;
-    resultEl.classList.add('empty');
+    resultEl.textContent='Erro: '+e.message;resultEl.classList.add('empty');
     toast(e.message,'err',5000);
   }finally{
-    btn.disabled=false;
-    btn.innerHTML='🌐 Traduzir Texto';
+    btn.disabled=false;btn.innerHTML='🌐 Traduzir Texto';
   }
 }
 
-// ── Translate Audio ──
-async function translateAudio(){
-  const api=apiInput.value.trim();
-  if(!api){toast('Introduz a tua API Key primeiro','err');return;}
-  const fileInput=document.getElementById('audioFile');
-  if(!fileInput.files.length){toast('Selecciona um ficheiro de áudio','err');return;}
+// ── Web Speech API ──
+let recognition=null;let finalTranscript='';
 
-  const btn=document.getElementById('btnTranslateAudio');
-  btn.disabled=true;
-  btn.innerHTML='<div class="spinner"></div> A processar...';
-  const t0=Date.now();
+function startListening(){
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){toast('O teu browser não suporta reconhecimento de voz. Usa Chrome.','err',6000);return;}
+
+  recognition=new SR();
+  recognition.lang=document.getElementById('audSrc').value;
+  recognition.continuous=true;
+  recognition.interimResults=true;
+  finalTranscript='';
+
+  recognition.onstart=()=>{
+    document.getElementById('micZone').classList.add('listening');
+    document.getElementById('micIcon').textContent='🔴';
+    document.getElementById('micTitle').textContent='A ouvir...';
+    document.getElementById('micSub').textContent='Fala agora';
+    document.getElementById('btnMicStart').style.display='none';
+    document.getElementById('btnMicStop').style.display='flex';
+  };
+
+  recognition.onresult=e=>{
+    let interim='';
+    for(let i=e.resultIndex;i<e.results.length;i++){
+      if(e.results[i].isFinal) finalTranscript+=e.results[i][0].transcript+' ';
+      else interim+=e.results[i][0].transcript;
+    }
+    document.getElementById('interimText').textContent=interim;
+  };
+
+  recognition.onerror=e=>{
+    toast('Erro no microfone: '+e.error,'err');
+    resetMic();
+  };
+
+  recognition.onend=()=>{
+    resetMic();
+    if(finalTranscript.trim()) translateAudioText(finalTranscript.trim());
+  };
+
+  recognition.start();
+}
+
+function stopListening(){
+  if(recognition) recognition.stop();
+}
+
+function resetMic(){
+  document.getElementById('micZone').classList.remove('listening');
+  document.getElementById('micIcon').textContent='🎙️';
+  document.getElementById('micTitle').textContent='Clica para falar';
+  document.getElementById('micSub').textContent='Usa o microfone para ditar o texto';
+  document.getElementById('interimText').textContent='';
+  document.getElementById('btnMicStart').style.display='flex';
+  document.getElementById('btnMicStop').style.display='none';
+}
+
+async function translateAudioText(text){
+  // Show transcription
+  document.getElementById('transText').textContent=text;
+  document.getElementById('transBlock').style.display='block';
 
   const resultEl=document.getElementById('audResult');
-  resultEl.classList.remove('empty');
-  resultEl.textContent='A transcrever áudio...';
-
-  const form=new FormData();
-  form.append('api_key',api);
-  form.append('audio',fileInput.files[0]);
-  form.append('source_language',document.getElementById('audSrcLang').value);
-  form.append('target_language',document.getElementById('audDstLang').value);
-  form.append('translate',document.getElementById('doTranslate').checked?'true':'false');
+  resultEl.classList.remove('empty');resultEl.textContent='A traduzir...';
 
   try{
-    const r=await fetch('/translate/audio',{method:'POST',body:form});
+    const r=await fetch('/translate/text',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        text,
+        source_language:'autodetect',
+        target_language:document.getElementById('audDst').value
+      })
+    });
     const d=await r.json();
-    if(!r.ok||d.error) throw new Error(d.error||'Erro desconhecido');
-
-    // Show transcription
-    if(d.transcription){
-      const tb=document.getElementById('transcriptionBlock');
-      document.getElementById('transcriptionText').textContent=d.transcription;
-      tb.style.display='block';
-    }
-
-    // Show translation
-    if(d.translated){
-      resultEl.innerHTML=d.translated+'<button class="copy-btn" onclick="copyText(\'audResult\')" style="display:block">📋 Copiar</button>';
-    } else {
-      resultEl.textContent=d.transcription||'Sem resultado';
-    }
-
-    const elapsed=((Date.now()-t0)/1000).toFixed(1)+'s';
-    document.getElementById('audTimeStat').textContent=elapsed;
+    if(!r.ok||d.error) throw new Error(d.error);
+    resultEl.innerHTML=d.translated+'<button class="copy-btn" onclick="copyEl(\'audResult\')">📋 Copiar</button>';
     document.getElementById('audStats').style.display='flex';
-    toast('Áudio processado em '+elapsed);
+    toast('Tradução concluída!');
   }catch(e){
-    resultEl.textContent='Erro: '+e.message;
-    resultEl.classList.add('empty');
+    resultEl.textContent='Erro: '+e.message;resultEl.classList.add('empty');
     toast(e.message,'err',5000);
-  }finally{
-    btn.disabled=false;
-    btn.innerHTML='🎙️ Transcrever &amp; Traduzir';
   }
 }
 
-// ── Enter key for text ──
+// Enter shortcut
 document.addEventListener('keydown',e=>{
-  if(e.ctrlKey&&e.key==='Enter'&&document.getElementById('panel-text').classList.contains('active')){
-    translateText();
-  }
+  if(e.ctrlKey&&e.key==='Enter') translateText();
 });
 </script>
 </body>
